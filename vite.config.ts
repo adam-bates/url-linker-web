@@ -16,7 +16,7 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           if (id.includes("node_modules")) {
-            if (id.includes("react") && !id.includes("react-dom")) {
+            if (id.includes("react")) {
               return "vendor_react";
             } else {
               return "vendor";

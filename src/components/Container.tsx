@@ -26,7 +26,13 @@ export default () => {
       header={
         <Header navbarOpened={navbarOpened} setNavbarOpened={setNavbarOpened} />
       }
-      navbar={<Navbar opened={navbarOpened} setForm={setForm} />}
+      navbar={
+        <Navbar
+          opened={navbarOpened}
+          setOpened={setNavbarOpened}
+          setForm={setForm}
+        />
+      }
       footer={<Footer />}
     >
       <Content form={form} />

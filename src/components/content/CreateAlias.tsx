@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Title,
   Container,
@@ -23,6 +23,9 @@ export default () => {
   });
 
   const [result, setResult] = useState<string | undefined>();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => setIsSubmitted(false), [form.values]);
 
   return (
     <Container my="lg">
@@ -46,6 +49,8 @@ export default () => {
             } catch (e) {
               console.error(e);
               setResult("Error!");
+              setIsSubmitted(true);
+              return;
             }
 
             if (res?.status === 200) {
@@ -54,6 +59,8 @@ export default () => {
               console.warn(res?.data);
               setResult("Unsuccessful!");
             }
+
+            setIsSubmitted(true);
           }
         )}
       >
@@ -100,7 +107,9 @@ export default () => {
         )}
 
         <Group position="left" py="lg">
-          <Button type="submit">Create Link</Button>
+          <Button disabled={isSubmitted} type="submit">
+            Create Link
+          </Button>
         </Group>
       </form>
 

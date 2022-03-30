@@ -1,11 +1,18 @@
 import { Button, Container, Navbar, Stack, Title } from "@mantine/core";
+import { Dispatch } from "react";
 
 type NavbarProps = {
   opened: boolean;
+  setOpened: Dispatch<boolean | ((prevState: boolean) => boolean)>;
   setForm: (form: string) => void;
 };
 
-export default ({ opened, setForm }: NavbarProps) => {
+export default ({ opened, setOpened, setForm }: NavbarProps) => {
+  const handleClick = (form: string) => {
+    setForm(form);
+    setOpened(false);
+  };
+
   return (
     <Navbar
       p="md"
@@ -16,14 +23,14 @@ export default ({ opened, setForm }: NavbarProps) => {
       <Title order={3}>Requests</Title>
       <Container ml={0} mt="md">
         <Stack spacing="md">
-          <Button compact onClick={() => setForm("create-alias")}>
+          <Button compact onClick={() => handleClick("create-alias")}>
             Create Alias
           </Button>
 
           <Button
             compact
             color="red"
-            onClick={() => setForm("change-password")}
+            onClick={() => handleClick("change-password")}
           >
             Change Password
           </Button>

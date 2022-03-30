@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode } from "react";
+import { Dispatch } from "react";
 import {
   Header,
   MediaQuery,

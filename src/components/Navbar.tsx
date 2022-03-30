@@ -20,13 +20,13 @@ export default ({ opened, setForm }: NavbarProps) => {
             Create Alias
           </Button>
 
-          {/* <Button
+          <Button
             compact
             color="red"
             onClick={() => setForm("change-password")}
           >
             Change Password
-          </Button> */}
+          </Button>
         </Stack>
       </Container>
     </Navbar>

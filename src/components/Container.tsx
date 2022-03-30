@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { AppShell, Text } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 
-import { Header, Navbar, Sidebar, Footer } from "./layout";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import Content from "./content";
+import Footer from "./Footer";
 
 export default () => {
-  const [opened, setOpened] = useState(false);
+  const [navbarOpened, setNavbarOpened] = useState(false);
+  const [form, setForm] = useState("none");
 
   return (
     <AppShell
@@ -19,12 +23,13 @@ export default () => {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       fixed
-      header={<Header opened={opened} setOpened={setOpened} />}
-      navbar={<Navbar opened={opened} />}
-      aside={<Sidebar />}
+      header={
+        <Header navbarOpened={navbarOpened} setNavbarOpened={setNavbarOpened} />
+      }
+      navbar={<Navbar opened={navbarOpened} setForm={setForm} />}
       footer={<Footer />}
     >
-      <Text>Resize app to see responsive navbar in action</Text>
+      <Content form={form} />
     </AppShell>
   );
 };

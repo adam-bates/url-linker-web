@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 
 import { useColorScheme } from "@app/hooks/theme";
@@ -9,14 +10,20 @@ export default () => {
   const [colorScheme, toggleColorScheme] = useColorScheme();
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider theme={{ colorScheme }}>
-        <Global />
-        <Container />
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <StrictMode>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          withNormalizeCSS
+          withGlobalStyles
+          theme={{ colorScheme }}
+        >
+          <Global />
+          <Container />
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </StrictMode>
   );
 };
